@@ -8,13 +8,13 @@
   --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
 
   --color-latar: #ffffff;
-  --color-permukaan: #f1f5f2;
-  --color-garis: #dde5e0;
-  --color-teks: #1b2420;
-  --color-teks-lembut: #5b6a62;
+  --color-permukaan: #f3f7f4;
+  --color-garis: #dce7e1;
+  --color-teks: #19231f;
+  --color-teks-lembut: #52635a;
 
-  --color-utama: #1f6b4f;
-  --color-utama-gelap: #154d39;
+  --color-utama: #1a7a4c;
+  --color-utama-gelap: #135d39;
 
   --color-harga: #7a4e09;
   --color-harga-latar: #fbefd8;

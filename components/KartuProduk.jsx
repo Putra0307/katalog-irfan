@@ -20,7 +20,6 @@ export default function KartuProduk({ produk }) {
         )}
       </div>
       <div className="flex flex-1 flex-col gap-2 p-3 sm:p-4">
-        <p className="text-xs text-teks-lembut sm:hidden">{produk.kategori}</p>
         <h3 className="font-semibold leading-snug text-teks transition-colors group-hover:text-utama line-clamp-2">
           {produk.nama}
         </h3>

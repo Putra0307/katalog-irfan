@@ -36,11 +36,11 @@ export default function Header() {
     <header className="sticky top-0 z-50 border-b border-garis bg-latar/95 backdrop-blur-md">
       <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3 sm:py-4">
         {/* Logo / Nama Toko */}
-        <Link href="/" className="group flex items-center gap-2">
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-utama/10 text-lg transition-transform group-hover:scale-105">
+        <Link href="/" className="group flex min-w-0 items-center gap-2">
+          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-utama/10 text-lg transition-transform group-hover:scale-105">
             🍈
           </span>
-          <span className="text-lg font-extrabold tracking-tight text-utama transition-colors group-hover:text-utama-gelap sm:text-xl">
+          <span className="truncate text-base font-extrabold tracking-tight text-utama transition-colors group-hover:text-utama-gelap sm:text-xl">
             {toko.nama}
           </span>
         </Link>
@@ -79,15 +79,31 @@ export default function Header() {
         </nav>
 
         {/* Tombol Hamburger & Keranjang Cepat di Mobile */}
-        <div className="flex items-center gap-2 sm:hidden">
+        <div className="flex shrink-0 items-center gap-2 sm:hidden">
           <Link
             href="/keranjang"
-            className="flex items-center gap-1.5 rounded-lg border border-garis bg-permukaan px-2.5 py-1 text-xs font-semibold text-teks"
+            aria-label={`Keranjang belanja, ${totalBarang} barang`}
+            className="relative flex h-9 w-9 items-center justify-center rounded-lg border border-garis bg-permukaan text-teks transition-colors hover:border-utama hover:text-utama"
           >
-            <span>Keranjang</span>
-            <span className="flex h-4 min-w-4 items-center justify-center rounded-full bg-utama px-1 text-[10px] font-bold text-white">
-              {totalBarang}
-            </span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={1.75}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+              />
+            </svg>
+            {totalBarang > 0 && (
+              <span className="absolute -top-1 -right-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-utama px-1 text-[10px] font-bold text-white shadow-2xs">
+                {totalBarang}
+              </span>
+            )}
           </Link>
 
           <button
