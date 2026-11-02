@@ -2,12 +2,18 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { toko } from "@/lib/toko";
 import { ambilKeranjang, hitungTotalBarang } from "@/lib/keranjang";
 
 export default function Header() {
   const [totalBarang, setTotalBarang] = useState(0);
   const [menuTerbuka, setMenuTerbuka] = useState(false);
+  const pathname = usePathname();
+
+  const isBerandaAktif = pathname === "/";
+  const isProdukAktif = pathname === "/produk" || pathname.startsWith("/produk/");
+  const isKeranjangAktif = pathname === "/keranjang";
 
   useEffect(() => {
     const muatKeranjang = () => {
@@ -49,13 +55,21 @@ export default function Header() {
         <nav className="hidden items-center gap-6 text-sm font-semibold sm:flex">
           <Link
             href="/"
-            className="text-teks transition-colors hover:text-utama"
+            className={`transition-colors pb-0.5 ${
+              isBerandaAktif
+                ? "text-utama font-bold border-b-2 border-utama"
+                : "text-teks hover:text-utama"
+            }`}
           >
             Beranda
           </Link>
           <Link
-            href="/#produk"
-            className="text-teks transition-colors hover:text-utama"
+            href="/produk"
+            className={`transition-colors pb-0.5 ${
+              isProdukAktif
+                ? "text-utama font-bold border-b-2 border-utama"
+                : "text-teks hover:text-utama"
+            }`}
           >
             Produk
           </Link>
@@ -63,13 +77,17 @@ export default function Header() {
             href={waKontakUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-teks transition-colors hover:text-utama"
+            className="text-teks transition-colors hover:text-utama pb-0.5"
           >
             Kontak
           </a>
           <Link
             href="/keranjang"
-            className="flex items-center gap-2 rounded-xl border border-garis bg-permukaan px-3 py-1.5 text-sm font-semibold text-teks transition-all hover:border-utama hover:text-utama"
+            className={`flex items-center gap-2 rounded-xl border px-3 py-1.5 text-sm font-semibold transition-all ${
+              isKeranjangAktif
+                ? "border-utama bg-utama/10 text-utama font-bold"
+                : "border-garis bg-permukaan text-teks hover:border-utama hover:text-utama"
+            }`}
           >
             <span>Keranjang</span>
             <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-utama px-1.5 text-xs font-bold text-white">
@@ -83,7 +101,11 @@ export default function Header() {
           <Link
             href="/keranjang"
             aria-label={`Keranjang belanja, ${totalBarang} barang`}
-            className="relative flex h-9 w-9 items-center justify-center rounded-lg border border-garis bg-permukaan text-teks transition-colors hover:border-utama hover:text-utama"
+            className={`relative flex h-9 w-9 items-center justify-center rounded-lg border text-teks transition-colors hover:border-utama hover:text-utama ${
+              isKeranjangAktif
+                ? "border-utama bg-utama/10 text-utama"
+                : "border-garis bg-permukaan"
+            }`}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -155,14 +177,22 @@ export default function Header() {
             <Link
               href="/"
               onClick={() => setMenuTerbuka(false)}
-              className="rounded-lg px-3 py-2 text-sm font-semibold text-teks transition-colors hover:bg-permukaan hover:text-utama"
+              className={`rounded-lg px-3 py-2 text-sm font-semibold transition-colors ${
+                isBerandaAktif
+                  ? "bg-utama/10 text-utama font-bold"
+                  : "text-teks hover:bg-permukaan hover:text-utama"
+              }`}
             >
               Beranda
             </Link>
             <Link
-              href="/#produk"
+              href="/produk"
               onClick={() => setMenuTerbuka(false)}
-              className="rounded-lg px-3 py-2 text-sm font-semibold text-teks transition-colors hover:bg-permukaan hover:text-utama"
+              className={`rounded-lg px-3 py-2 text-sm font-semibold transition-colors ${
+                isProdukAktif
+                  ? "bg-utama/10 text-utama font-bold"
+                  : "text-teks hover:bg-permukaan hover:text-utama"
+              }`}
             >
               Produk
             </Link>
@@ -178,7 +208,11 @@ export default function Header() {
             <Link
               href="/keranjang"
               onClick={() => setMenuTerbuka(false)}
-              className="flex items-center justify-between rounded-lg border border-garis bg-permukaan px-3 py-2 text-sm font-semibold text-teks hover:border-utama hover:text-utama"
+              className={`flex items-center justify-between rounded-lg border px-3 py-2 text-sm font-semibold ${
+                isKeranjangAktif
+                  ? "border-utama bg-utama/10 text-utama font-bold"
+                  : "border-garis bg-permukaan text-teks hover:border-utama hover:text-utama"
+              }`}
             >
               <span>Keranjang Belanja</span>
               <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-utama px-1.5 text-xs font-bold text-white">
