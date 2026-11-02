@@ -4,7 +4,7 @@ import { toko } from "@/lib/toko";
 export default function Footer() {
   return (
     <footer className="mt-16 border-t border-garis bg-permukaan">
-      <div className="mx-auto flex max-w-5xl flex-col gap-6 px-4 py-8 text-sm text-teks-lembut sm:flex-row sm:items-center sm:justify-between">
+      <div className="mx-auto flex max-w-5xl flex-col gap-6 px-4 py-8 pb-20 sm:pb-8 text-sm text-teks-lembut sm:flex-row sm:items-center sm:justify-between">
         <div>
           <p className="font-bold text-teks">{toko.nama}</p>
           <p>{toko.alamat}</p>

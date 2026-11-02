@@ -1,6 +1,7 @@
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import TombolWhatsAppMelayang from "@/components/TombolWhatsAppMelayang";
 import { toko } from "@/lib/toko";
 
 export const metadata = {
@@ -23,6 +24,7 @@ export default function RootLayout({ children }) {
         <Header />
         <main className="mx-auto w-full max-w-5xl flex-1 px-4">{children}</main>
         <Footer />
+        <TombolWhatsAppMelayang />
       </body>
     </html>
   );
